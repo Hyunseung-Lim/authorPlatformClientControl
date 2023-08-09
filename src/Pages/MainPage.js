@@ -68,7 +68,7 @@ export const MainPage = (props) => {
             }
             setIsLoading(true);
         };
-        
+
         load_data();
     }, []);
 
@@ -134,23 +134,7 @@ export const MainPage = (props) => {
     }
 
     async function addQuestion (question) {
-        var id = generateRandomKey(5);
-        setWaitQList(prevData => [...prevData, {id: id, question: question}]);
-
-        await axios({
-            method: "POST",
-            url:"https://qna-restapi-dxpyj.run.goorm.site/get_lucy_answer",
-            data: { question: question, title: title},
-            headers: {'Content-Type': 'application/json'}
-        })
-        .then((response) => {
-            const res =response.data;
-            setQnAs(prevData => [...prevData, {question: String(question), answer: String(res.lucy_answer), isPublic: false}]);
-            setWaitQList(prevData => prevData.filter((item, i) => item.id !== id));
-        })
-        .catch(error => {
-            setWaitQList(prevData => prevData.filter((item, i) => item.id !== id));
-        });
+        setQnAs(prevData => [...prevData, {question: String(question), answer: "Enter the answer", isPublic: false}]);
     }
 
     async function addFollowUpAnswer (question, index) {

@@ -47,7 +47,7 @@ export const LoginPage = (props) => {
                     {/* <input value={url} onChange={urlHandler} placeholder='Enter the arxiv link of your paper'></input> */}
                     <input value={password} onChange={passwordHandler} placeholder='Enter password'></input>
                     <Link 
-                        to = {password === 'test01' ? '/main' : '/'}
+                        to = {(password === 'test01' & title !== "") ? '/main' : '/'}
                         state = {{ url: url, username: username, title: title, userScholarID: userScholarID }} 
                         className='submitbutton'
                     >
